@@ -1,0 +1,27 @@
+name: Build and Package ztncui
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-package:
+    runs-on: centos-8
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        sudo dnf install -y rpm-build rpm-sign npm nodejs gcc-c++ make
+        sudo npm install -g pkg
+    - name: Build and package ztncui
+      run: |
+        cd build
+        build.sh
+    - name: Upload the packages
+      uses: actions/upload-artifact@v2
+      with:
+        name: ztncui-packages
+        path: build/Release
