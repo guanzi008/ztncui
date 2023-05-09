@@ -91,6 +91,7 @@ install -m 755 $SRC_DIR/node_modules/argon2/build/Release/argon2.node $STAGING_D
 install -m 755 $BUILD_DIR/ztncui $STAGING_DIR/opt/key-networks/ztncui/
 install -m 644 $BUILD_DIR/ztncui.service $STAGING_DIR/lib/systemd/system
 
+
 rm -f $BUILD_DIR/ztncui
 
 GENERAL_FPM_FLAGS="
